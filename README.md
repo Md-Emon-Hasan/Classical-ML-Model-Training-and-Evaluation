@@ -1,133 +1,170 @@
-# Gradio Projects
+<div align="center">
 
-Welcome to the **Gradio Projects** repository! This repository is dedicated to showcasing various projects utilizing Gradio, a Python library that allows you to quickly create customizable UI components around your machine learning models. Whether you're new to Gradio or looking to expand your skills, you'll find tutorials, examples, and projects here to support your learning journey.
+# Classical Machine Learning: Model Training & Evaluation
 
-## 📋 Contents
+Practical, notebook-based guides to training, tuning, interpreting, and evaluating classical machine learning models.
 
-- [Introduction](#introduction)
-- [Topics Covered](#topics-covered)
-- [Getting Started](#getting-started)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-modeling-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
+[![Jupyter](https://img.shields.io/badge/Jupyter-notebooks-F37626?logo=jupyter&logoColor=white)](https://jupyter.org/)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
+
+![Classical machine learning project banner](banner.png)
+
+</div>
+
+## Overview
+
+This repository is a hands-on learning collection for common classical machine learning workflows. Its Jupyter notebooks demonstrate how to prepare data, train baseline models, compare evaluation metrics, improve generalization, tune model parameters, address class imbalance, and explain model predictions.
+
+Examples use scikit-learn and public or included datasets. A few notebooks also introduce TensorFlow/Keras, SHAP, XGBoost, and imbalanced-learn. The notebooks are educational examples; review the data preparation, assumptions, and evaluation setup before reusing a model in a real application.
+
+## Contents
+
+- [Learning modules](#learning-modules)
+- [Repository structure](#repository-structure)
+- [Datasets and saved models](#datasets-and-saved-models)
+- [Requirements](#requirements)
+- [Getting started](#getting-started)
+- [Running the notebooks](#running-the-notebooks)
+- [Working with saved models](#working-with-saved-models)
 - [Contributing](#contributing)
-- [Challenges Faced](#challenges-faced)
-- [Lessons Learned](#lessons-learned)
-- [Why I Created This Repository](#why-i-created-this-repository)
 - [License](#license)
-- [Contact](#contact)
+- [Connect with me](#connect-with-me)
 
----
+## Learning modules
 
-## 📖 Introduction
+| Module | What you will explore | Main materials |
+| --- | --- | --- |
+| Model training and evaluation | Train and compare classifiers; examine common classification metrics. | [`Model Training & Evaluation/`](Model%20Training%20%26%20Evaluation/) |
+| Ensemble techniques | Stacking, voting, bagging, and boosting with several base estimators. | [`Ensemble Technique/`](Ensemble%20Technique/) |
+| Hyperparameter tuning | Cross-validation, `GridSearchCV`, and `RandomizedSearchCV`, including a heart-disease example. | [`Hyperparameter Tuning/`](Hyperparameter%20Tuning/) |
+| Overfitting, underfitting, and regularization | Use cross-validation and regularization to reason about generalization. | [`Overfitting and Underfitting/`](Overfitting%20and%20Underfitting/) |
+| Imbalanced data | Compare undersampling, oversampling, SMOTE, and an ensemble approach for churn data. | [`Handling Imbalanced Data/`](Handling%20Imbalanced%20Data/) |
+| Explainable AI | Use SHAP explainers and plots to inspect model predictions. | [`Explainable AI (SHAP)/`](Explainable%20AI%20%28SHAP%29/) |
 
-This repository provides comprehensive resources for learning and using Gradio, covering fundamental concepts, practical examples, and hands-on projects. Whether you're building machine learning demos, interactive applications, or just exploring Gradio's capabilities, this repository will guide you through the basics and advanced uses of Gradio.
+## Repository structure
 
----
+```text
+.
+├── banner.png
+├── Ensemble Technique/
+│   ├── Ensemble Technique.ipynb
+│   └── saved ensemble model files (*.pkl)
+├── Explainable AI (SHAP)/
+│   └── SHAP.ipynb
+├── Handling Imbalanced Data/
+│   ├── Handling Imbalanced Data.ipynb
+│   └── customer_churn.csv
+├── Hyperparameter Tuning/
+│   ├── GridSearchCV vs RandomizedSearchCV.ipynb
+│   ├── Real life example.ipynb
+│   ├── heart.csv
+│   └── random_forest_model.pkl
+├── Model Training & Evaluation/
+│   └── Model Training & Evaluation.ipynb
+├── Overfitting and Underfitting/
+│   ├── Cross Validation/
+│   │   ├── KFold Cross Validation.ipynb
+│   │   ├── Project Example.ipynb
+│   │   ├── solution.md
+│   │   └── saved model and scaler files (*.pkl)
+│   └── Regularization/
+│       ├── Regularization.ipynb
+│       └── Melbourne housing CSV datasets
+├── LICENSE
+└── README.md
+```
 
-## 🔍 Topics Covered
+## Datasets and saved models
 
-- **Setting Up Gradio:** Installation and basic project structure.
-- **Creating Interfaces:** Building simple and complex Gradio interfaces.
-- **Model Integration:** Connecting Gradio with various machine learning models.
-- **Custom Components:** Designing and implementing custom UI components.
-- **Deployment:** Deploying Gradio applications to platforms like Heroku or AWS.
-- **Examples and Projects:** Real-world applications and demo projects.
+The repository includes datasets for customer churn, heart disease, and Melbourne housing. Other notebooks use datasets bundled with scikit-learn, such as Iris and diabetes. Keep each notebook in its current module directory when running it so its relative dataset paths resolve correctly.
 
----
+Serialized `.pkl` files are example outputs produced by the notebooks. They are not required to read or run the lessons; rerun the corresponding notebook to regenerate them. Only load pickle files from sources you trust. Pickled Python objects can execute code during loading, and compatibility may depend on the Python and scikit-learn versions used when they were created.
 
-## 🚀 Getting Started
+## Requirements
 
-To get started with Gradio projects, follow these steps:
+- Python 3.9 or newer
+- Jupyter Notebook or JupyterLab
+- Core libraries: `numpy`, `pandas`, `matplotlib`, `seaborn`, and `scikit-learn`
+- Additional libraries used by specific notebooks: `shap`, `xgboost`, `imbalanced-learn`, and `tensorflow`
 
-1. **Clone the repository:**
+Install the core tools in a virtual environment:
 
-   ```bash
-   git clone https://github.com/Md-Emon-Hasan/Gradio.git
-   ```
+```bash
+python -m venv .venv
+```
 
-2. **Navigate to the project directory:**
+Activate it, then install Jupyter and the core packages:
 
-   ```bash
-   cd Gradio
-   ```
+```bash
+# Windows PowerShell
+.venv\Scripts\Activate.ps1
 
-3. **Explore topics and examples:**
+# macOS / Linux
+source .venv/bin/activate
 
-   - Each directory contains tutorials, examples, or projects related to specific Gradio topics.
+python -m pip install --upgrade pip
+python -m pip install jupyter numpy pandas matplotlib seaborn scikit-learn
+```
 
----
+Install extra packages only when you need the notebook that uses them:
 
-## 🤝 Contributing
+```bash
+python -m pip install shap xgboost imbalanced-learn tensorflow
+```
 
-Contributions to improve or expand the repository are welcome! Here's how you can contribute:
+TensorFlow installation support depends on your operating system and Python version. Consult its official installation instructions if installation fails.
 
-1. **Fork the repository.**
-2. **Create a new branch:**
+## Getting started
 
-   ```bash
-   git checkout -b feature/new-feature
-   ```
+Clone the repository and change into its directory:
 
-3. **Make your changes:**
+```bash
+git clone https://github.com/Md-Emon-Hasan/Classical-ML-Model-Training-and-Evaluation.git
+cd Classical-ML-Model-Training-and-Evaluation
+```
 
-   - Add new tutorials, examples, or improve existing documentation.
+After installing the requirements, start Jupyter from the repository root:
 
-4. **Commit your changes:**
+```bash
+jupyter notebook
+```
 
-   ```bash
-   git commit -am 'Add a new feature or update'
-   ```
+Open a module folder and run its notebook from top to bottom. Some notebooks train and save model artifacts; execution time and optional dependencies vary by lesson.
 
-5. **Push to the branch:**
+## Running the notebooks
 
-   ```bash
-   git push origin feature/new-feature
-   ```
+1. Choose a learning module from the table above.
+2. Open the notebook in Jupyter or upload it to a compatible notebook environment.
+3. Check that the required packages are installed and the notebook's data files remain beside it in the module folder.
+4. Run cells in order. Review the data split, random seed, metrics, and preprocessing choices when comparing results.
+5. Save your own copy of generated outputs if you want to preserve them.
 
-6. **Submit a pull request.**
+The included examples are for learning and experimentation. Metrics on the included datasets do not guarantee performance on new or production data.
 
----
+## Working with saved models
 
-## 🛠️ Challenges Faced
+Several lessons write trained estimators and preprocessing objects as `.pkl` files. If you reuse one, load it in a compatible Python environment and apply the same preprocessing used during training. For a reproducible deployment workflow, record package versions and prefer a documented model format and validation process appropriate to your application.
 
-Throughout the development of this repository, challenges were encountered, including:
+## Contributing
 
-- Understanding Gradio's API and customization options.
-- Integrating Gradio with different machine learning frameworks.
-- Deploying Gradio applications and managing production environments.
+Improvements and additional examples are welcome. To contribute:
 
----
+1. Fork the repository and create a feature branch.
+2. Keep each notebook focused, reproducible, and clear about its dataset and dependencies.
+3. Update this README when you add or rename a module or dataset.
+4. Submit a pull request describing the change.
 
-## 📚 Lessons Learned
+## License
 
-Key lessons learned from developing this repository include:
+This project is distributed under the Apache License 2.0. See [LICENSE](LICENSE) for the full terms.
 
-- Mastery of Gradio fundamentals and best practices.
-- Practical application of Gradio in building interactive machine learning demos.
-- Importance of clear documentation and structured project organization in Gradio development.
+## Connect with me
 
----
-
-## 🌟 Why I Created This Repository
-
-I created this repository to provide a structured and beginner-friendly resource for learning Gradio. It aims to empower developers with the skills and knowledge to build interactive and user-friendly machine learning applications using Gradio.
-
----
-
-## 📜 License
-
-This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for more details.
-
----
-
-## 📬 Contact
-
-- **Email:** [iconicemon01@gmail.com](mailto:iconicemon01@gmail.com)
-- **WhatsApp:** [+8801834363533](https://wa.me/8801834363533)
+- **Portfolio:** [emonlabs-ai.hitechparks.com](https://emonlabs-ai.hitechparks.com)
 - **GitHub:** [Md-Emon-Hasan](https://github.com/Md-Emon-Hasan)
-- **LinkedIn:** [Md Emon Hasan](https://www.linkedin.com/in/md-emon-hasan)
-- **Facebook:** [Md Emon Hasan](https://www.facebook.com/mdemon.hasan2001/)
-
-Feel free to reach out for any questions, feedback, or collaboration opportunities!
-
----
-
-Feel free to customize this template further to better reflect the specifics of your **Gradio Projects** repository.
+- **LinkedIn:** [Md Emon Hasan](https://www.linkedin.com/in/md-emon-hasan-695483237/)
+- **Hugging Face:** [emonHasan01](https://huggingface.co/emonHasan01)
+- **Email:** [emon.mlengineer@gmail.com](mailto:emon.mlengineer@gmail.com)
+- **WhatsApp:** [+880 1834-363533](https://wa.me/8801834363533)
